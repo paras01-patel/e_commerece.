@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+<style>
+.sidebar{
+    width:240px;
+    height:100vh;
+    background:#0f172a;
+    color:white;
+    position:fixed;
+    top:0;
+    left:0;
+    overflow-y:auto;
+}
+
+.sidebar h2{
+    text-align:center;
+    padding:20px 0;
+    border-bottom:1px solid #1e293b;
+}
+
+/* Hide checkbox */
+.sidebar input{
+    display:none;
+}
+
+.sidebar label,
+.sidebar a{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    color:#cbd5e1;
+    padding:12px 20px;
+    text-decoration:none;
+    font-size:14px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.sidebar label:hover,
+.sidebar a:hover{
+    background:#1e293b;
+    color:white;
+}
+
+/* Dropdown hidden */
+.dropdown{
+    display:none;
+    background:#1e293b;
+}
+
+.dropdown a{
+    padding-left:45px;
+    font-size:13px;
+}
+
+/* When checkbox checked → show dropdown */
+.sidebar input:checked + label + .dropdown{
+    display:block;
+}
+
+/* Rotate arrow */
+.arrow{
+    transition:0.3s;
+}
+
+.sidebar input:checked + label .arrow{
+    transform:rotate(90deg);
+}
+
+.admin-content{
+    margin-left:240px;
+    padding:30px;
+}
+
+/* ===== Add Employee Section ===== */
+form{
+    background:#ffffff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    max-width:500px;
+    margin-top:20px;
+}
+
+/* Form Heading */
+h1{
+    margin-bottom:20px;
+    font-size:22px;
+    color:#1e293b;
+}
+
+/* Form Group */
+.group_l{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:15px;
+}
+
+/* Label */
+.group_l label{
+    margin-bottom:5px;
+    font-size:14px;
+    font-weight:500;
+    color:#374151;
+}
+
+/* Input & Select */
+.group_l input,
+.group_l select{
+    padding:10px;
+    border:1px solid #d1d5db;
+    border-radius:6px;
+    font-size:14px;
+    outline:none;
+    transition:0.3s;
+}
+
+/* Focus Effect */
+.group_l input:focus,
+.group_l select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 2px rgba(37,99,235,0.1);
+}
+
+/* Submit Button */
+.btn-submit{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px;
+    width:100%;
+    border-radius:6px;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+    margin-top:10px;
+}
+
+.btn-submit:hover{
+    background:#1e40af;
+}
+
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="sidebar">
+    <h2>Admin Panel</h2>
+
+    <a href="#">
+        <span class="material-icons-outlined">dashboard</span>
+        Dashboard
+    </a>
+
+    <!-- Employee Dropdown -->
+    <input type="checkbox" id="emp">
+    <label for="emp">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <span class="material-icons-outlined">badge</span>
+            Employees
+        </div>
+        <span class="material-icons-outlined arrow">chevron_right</span>
+    </label>
+
+    <div class="dropdown">
+        <a href="{% url "add_empolyee" %}">Add Employee</a>
+        <a href="#">Employee List</a>
+    </div>
+
+    <!-- Department Dropdown -->
+    <input type="checkbox" id="dept">
+    <label for="dept">
+        <div style="display:flex; align-items:center; gap:10px;">
+            <span class="material-icons-outlined">apartment</span>
+            Departments
+        </div>
+        <span class="material-icons-outlined arrow">chevron_right</span>
+    </label>
+
+    <div class="dropdown">
+        <a href="#">Add Department</a>
+        <a href="#">Department List</a>
+    </div>
+
+    <a href="#">
+        <span class="material-icons-outlined">bar_chart</span>
+        Reports
+    </a>
+
+    <a href="#">
+        <span class="material-icons-outlined">settings</span>
+        Settings
+    </a>
+
+    <a href="{% url 'logout' %}">
+        <span class="material-icons-outlined">logout</span>
+        Logout
+    </a>
+</div>
+
+<div class="admin-content">
+    <h1>Welcome to Admin Dashboard</h1>
+
+
+{% if add_empolyee %}
+    <h1>Add Employee</h1>
+        <form action="{% url 'add_e' %}" method='POST'>
+            {% csrf_token %}
+            
+            <div class="group_l">
+                <label for=""> Full Name :-</label>
+                <input type="text" name="name">
+            </div>
+            
+            <div class="group_l">
+                <label for="">Age:-</label>
+                <input type="text" name="age">
+            </div>
+        
+            <div class="group_l">
+                <label for="">Contact:-</label>
+                <input type="text" name="contect">
+            </div>
+            
+            <div class="group_l">
+                <label for="">Email:-</label>
+                <input type="text" name="email">
+            </div>
+            
+            <div class="group_l">
+                <label for="">Department:-</label>
+                <select name="department">
+                    <option>HR</option>
+                    <option>AC</option>
+                    <option>MC</option>
+                    <option>HOD</option>
+                    <option>DC</option>
+                </select>
+            </div>
+        
+                <button class="btn-submit" type="submit">Add Employee</button>
+        
+        </form>
+
+{% endif %}
+</div>
+
+{% endblock %}

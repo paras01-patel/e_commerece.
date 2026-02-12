@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login</title>
+
+<style>
+    body{
+        margin:0;
+        font-family:Segoe UI, sans-serif;
+        background:#f9fafb;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+    }
+
+    .login-container{
+        width:350px;
+        background:white;
+        padding:30px;
+        border-radius:10px;
+        box-shadow:0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    h2{
+        text-align:center;
+        margin-bottom:20px;
+    }
+
+    label{
+        font-weight:bold;
+        display:block;
+        margin-top:12px;
+    }
+
+    input{
+        width:100%;
+        padding:10px;
+        margin-top:5px;
+        border:1px solid #ccc;
+        border-radius:5px;
+    }
+
+    button{
+        width:100%;
+        padding:10px;
+        margin-top:20px;
+        background:#2563eb;
+        color:white;
+        border:none;
+        border-radius:6px;
+        font-size:16px;
+        cursor:pointer;
+    }
+
+    button:hover{
+        background:#1e40af;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+
+<h2>Login</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Login</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
