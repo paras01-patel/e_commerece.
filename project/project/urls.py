@@ -27,6 +27,8 @@ urlpatterns = [
     path('admindashboard/',views.admindashboard,name='admindashboard'),
     path('add_empolyee',views.add_empolyee,name='add_empolyee'),
     path('add_e',views.add_e,name='add_e'),
+    path('employee_list',views.employee_list,name='employee_list'),
+    
     
     
     

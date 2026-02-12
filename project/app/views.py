@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib import messages
 from app.models import emp
 
@@ -33,19 +33,39 @@ def admindashboard(req):
 def add_empolyee(req):
     return render(req,'admindashboard.html',{'add_empolyee':True})
 
-def add_e(req):
-    if req.method=="POST":
-        n=req.POST.get('name')
-        a=req.POST.get('age')
-        c=req.POST.get('contact')
-        e=req.POST.get('email')
-        d=req.POST.get('department')
-        
-        user=e.objects.filter(email=e)
-        if user:
-            return render(req,'admindashboard.html',{'add_employee':True})
-        else:
-            emp.objects.create(name=n,age=a,contact=c,email=e,Department=d)
-            return render(req,'admindashboard.html',{'add_employee':True})   
-    return render(req,'admindasahboard.html',{'add_empolyee':True})
 
+
+def add_e(req):
+    if req.method == "POST":
+        name = req.POST.get('name')
+        age = req.POST.get('age')
+        contact = req.POST.get('contact')
+        email = req.POST.get('email')
+        department = req.POST.get('department')
+        if not name or not age or not contact or not email or not department:
+            return render(req, 'admindashboard.html', {
+                'add_employee': True,
+                'error': "All fields are required"
+            })
+
+        user = emp.objects.filter(e=email)
+
+        if user.exists():
+            return render(req, 'admindashboard.html', {'add_employee': True})
+
+        emp.objects.create(
+            n=name,
+            a=age,
+            c=contact,   # 👈 ye NULL nahi hona chahiye
+            e=email,
+            d=department
+        )
+        
+        return render(req, 'admindashboard.html', {'add_employee': True})
+    else:
+        return render(req, 'admindashboard.html', {'add_employee': True})
+
+
+def employee_list(req):
+    user =emp.objects.all()
+    return render(req,'admindashboard.html',{'employee_list':True,'data':user})

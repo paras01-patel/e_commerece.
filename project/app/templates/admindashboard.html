@@ -83,19 +83,23 @@
 
 /* ===== Add Employee Section ===== */
 form{
-    background:#ffffff;
+    background:#0f172a;
     padding:30px;
     border-radius:10px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    max-width:500px;
+    box-shadow:0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width:800px;
+    margin-left:350px;
     margin-top:20px;
 }
 
 /* Form Heading */
 h1{
     margin-bottom:20px;
+    text-align:center
     font-size:22px;
     color:#1e293b;
+    font-size:50px;
+    margin-left:350px;
 }
 
 /* Form Group */
@@ -103,6 +107,8 @@ h1{
     display:flex;
     flex-direction:column;
     margin-bottom:15px;
+    
+    
 }
 
 /* Label */
@@ -110,7 +116,8 @@ h1{
     margin-bottom:5px;
     font-size:14px;
     font-weight:500;
-    color:#374151;
+    color:white;
+    font-size:15px;
 }
 
 /* Input & Select */
@@ -122,6 +129,7 @@ h1{
     font-size:14px;
     outline:none;
     transition:0.3s;
+
 }
 
 /* Focus Effect */
@@ -147,8 +155,61 @@ h1{
 
 .btn-submit:hover{
     background:#1e40af;
+
+}
+.he{
+    margin-left:550px;
+    margin-top:50px;
 }
 
+.table-container {
+    width: 95%;
+    margin: 30px auto;
+    overflow-x: auto;
+}
+
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.employee-table thead {
+    background:#0f172a;
+    color: white;
+}
+
+.employee-table th,
+.employee-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.employee-table th {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.employee-table tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background 0.2s ease;
+}
+
+.employee-table tbody tr:hover {
+    background: #f1f9f1;
+}
+
+.employee-table tbody tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.employee-table td {
+    color: #333;
+}
 
 </style>
 {% endblock %}
@@ -163,7 +224,7 @@ h1{
         Dashboard
     </a>
 
-    <!-- Employee Dropdown -->
+    
     <input type="checkbox" id="emp">
     <label for="emp">
         <div style="display:flex; align-items:center; gap:10px;">
@@ -175,7 +236,7 @@ h1{
 
     <div class="dropdown">
         <a href="{% url "add_empolyee" %}">Add Employee</a>
-        <a href="#">Employee List</a>
+        <a href="{% url 'employee_list' %}">Employee List</a>
     </div>
 
     <!-- Department Dropdown -->
@@ -210,11 +271,11 @@ h1{
 </div>
 
 <div class="admin-content">
-    <h1>Welcome to Admin Dashboard</h1>
+    <h1><u>Welcome to Admin Dashboard </u></h1>
 
 
 {% if add_empolyee %}
-    <h1>Add Employee</h1>
+    <h1 class="he">Add Employee</h2>
         <form action="{% url 'add_e' %}" method='POST'>
             {% csrf_token %}
             
@@ -224,22 +285,22 @@ h1{
             </div>
             
             <div class="group_l">
-                <label for="">Age:-</label>
+                <label for="">Age :-</label>
                 <input type="text" name="age">
             </div>
         
             <div class="group_l">
-                <label for="">Contact:-</label>
+                <label for="">Contact :-</label>
                 <input type="text" name="contect">
             </div>
             
             <div class="group_l">
-                <label for="">Email:-</label>
+                <label for="">Email :-</label>
                 <input type="text" name="email">
             </div>
             
             <div class="group_l">
-                <label for="">Department:-</label>
+                <label for="">Department :-</label>
                 <select name="department">
                     <option>HR</option>
                     <option>AC</option>
@@ -252,6 +313,37 @@ h1{
                 <button class="btn-submit" type="submit">Add Employee</button>
         
         </form>
+    {% elif employee_list %}
+        <h1 class="he">Employee List </h2>
+
+<div class="table-container">
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.age }}</td>
+                <td>{{ i.contact }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.department }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 
 {% endif %}
 </div>
