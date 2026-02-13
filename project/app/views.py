@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from app.models import emp
+from app.models import emp,dep
 
 
 
@@ -10,8 +10,12 @@ from app.models import emp
 
 def landing(req):
     return render(req,'landing.html')
-def login(req):
 
+def signup(req):
+    return render(req,'signup.html')
+
+
+def login(req):
     if req.method == 'POST':
         e = req.POST.get('email')
         p = req.POST.get('password')
@@ -23,7 +27,6 @@ def login(req):
     return render(req, 'login.html')
 
 def logout(req):
-    
     return render(req,'login.html')
 
 
@@ -48,17 +51,17 @@ def add_e(req):
                 'error': "All fields are required"
             })
 
-        user = emp.objects.filter(e=email)
+        user = emp.objects.filter(email=e)
 
         if user.exists():
             return render(req, 'admindashboard.html', {'add_employee': True})
 
         emp.objects.create(
-            n=name,
-            a=age,
-            c=contact,   # 👈 ye NULL nahi hona chahiye
-            e=email,
-            d=department
+            name=name,
+            age=age,
+            contact=contact, # 👈 ye NULL nahi hona chahiye
+            email=email,
+            department=department
         )
         
         return render(req, 'admindashboard.html', {'add_employee': True})
@@ -69,3 +72,18 @@ def add_e(req):
 def employee_list(req):
     user =emp.objects.all()
     return render(req,'admindashboard.html',{'employee_list':True,'data':user})
+
+
+def add_department(req):
+    return render(req,'admindashboard.html',{'add_department':True})
+
+def add_d(req):
+    if req.method=="POST":
+        d=req.POST.get('dept')
+        h=req.POST.get('h_dept')
+        
+        
+    return render(req,'admindashboard.html',{'add_d':True})
+
+def department_list(req):
+    return render(req,'admindashboard.html',{'department_list':True})

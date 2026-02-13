@@ -22,12 +22,17 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.landing,name='landing'),
+    path('signup/',views.signup,name='signup'),
     path('login/',views.login,name='login'),
     path('logout',views.logout,name='logout'),
     path('admindashboard/',views.admindashboard,name='admindashboard'),
     path('add_empolyee',views.add_empolyee,name='add_empolyee'),
     path('add_e',views.add_e,name='add_e'),
     path('employee_list',views.employee_list,name='employee_list'),
+    path('add_department',views.add_department,name='add_department'),
+    path('department_list',views.department_list,name='department_list'),
+    path('add_d',views.add_d,name='add_d')
+    
     
     
     

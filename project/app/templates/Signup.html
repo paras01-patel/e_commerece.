@@ -64,10 +64,13 @@
             <div class="login-container">
             
             
-            <h2>Login</h2>
+            <h2>Sign Up</h2>
             
             <form method="POST">
                 {% csrf_token %}
+
+                <label>Username</label>
+                <input type="text" name="username" required>
             
                 <label>Email</label>
                 <input type="email" name="email" required>
@@ -75,7 +78,7 @@
                 <label>Password</label>
                 <input type="password" name="password" required>
             
-                <button type="submit">Login</button>
+                <button type="submit">Sign Up</button>
             
             </form>
 

@@ -8,3 +8,7 @@ class emp(models.Model):
     c=models.IntegerField(max_length=15)
     e=models.EmailField(max_length=30)
     d=models.CharField(max_length=50)
+    
+class dep(models.Model):
+    d=models.CharField()
+    h=models.CharField(max_length=50)

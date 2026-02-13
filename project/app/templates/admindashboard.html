@@ -235,7 +235,7 @@ h1{
     </label>
 
     <div class="dropdown">
-        <a href="{% url "add_empolyee" %}">Add Employee</a>
+        <a href="{% url 'add_empolyee' %}">Add Employee</a>
         <a href="{% url 'employee_list' %}">Employee List</a>
     </div>
 
@@ -250,8 +250,8 @@ h1{
     </label>
 
     <div class="dropdown">
-        <a href="#">Add Department</a>
-        <a href="#">Department List</a>
+        <a href="{% url 'add_department' %}">Add Department</a>
+        <a href="{% url 'department_list' %}">Department List</a>
     </div>
 
     <a href="#">
@@ -345,6 +345,54 @@ h1{
 </div>
 
 
+
+{% elif add_department %}
+<form action="{% url 'add_d' %}" method="POST" >
+    {% csrf_token %}
+        <div class="group_l">
+            <label for="">Department</label>
+            <select name="dept" id="">
+                <option>HR</option>
+                <option>AC</option>
+                <option>MC</option>
+                <option>HOD</option>
+                <option>DC</option>
+            </select>
+        </div>
+
+        <div class="group_l">
+            <label for="">Head Department</label>
+            <input type="text" name="h_dept">
+        </div>
+
+        <button type="submit" class="btn-submit">Add Department</button>
+</form>
+
+   {% elif department_list %}
+        <h1 class="he">Employee List </h2>
+
+<div class="table-container">
+    <table class="employee-table">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Department</th>
+                <th>Head Department</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i. }}</td>
+                <td>{{ i.age }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endif %}
 </div>
 

@@ -114,13 +114,13 @@
         <a href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Contact</a>
-        {% if user.email %}
+        <a href="{% url 'signup' %}">Signup</a>
+
+        {% comment %} {% if user.email %} {% endcomment %}
         <a href="{% url 'login' %}">Login</a>
-        {% else %}
+        {% comment %} {% else %}
         <a href="{% url 'logout' %}">Logout</a>
-        {% endif %}
-
-
+        {% endif %} {% endcomment %}
     </div>
 </div>
 
