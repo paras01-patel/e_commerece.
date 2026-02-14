@@ -27,6 +27,7 @@ def login(req):
     return render(req, 'login.html')
 
 def logout(req):
+    
     return render(req,'login.html')
 
 
@@ -56,15 +57,15 @@ def add_e(req):
         if user.exists():
             return render(req, 'admindashboard.html', {'add_employee': True})
 
-        emp.objects.create(
+        data=emp.objects.create(
             name=name,
             age=age,
-            contact=contact, # 👈 ye NULL nahi hona chahiye
+            contact=contact, 
             email=email,
             department=department
         )
         
-        return render(req, 'admindashboard.html', {'add_employee': True})
+        return render(req, 'admindashboard.html', {'add_employee': True,user:'data'})
     else:
         return render(req, 'admindashboard.html', {'add_employee': True})
 
@@ -81,8 +82,6 @@ def add_d(req):
     if req.method=="POST":
         d=req.POST.get('dept')
         h=req.POST.get('h_dept')
-        
-        
     return render(req,'admindashboard.html',{'add_d':True})
 
 def department_list(req):
