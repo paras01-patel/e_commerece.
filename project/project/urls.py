@@ -31,7 +31,11 @@ urlpatterns = [
     path('employee_list',views.employee_list,name='employee_list'),
     path('add_department',views.add_department,name='add_department'),
     path('department_list',views.department_list,name='department_list'),
-    path('add_d',views.add_d,name='add_d')
+    path('add_d',views.add_d,name='add_d'),
+    path('userpanel/',views.userpanel,name='userpanel'),
+    path('submit_q',views.submit_q,name='submit_q'),
+    path('show_q',views.show_q,name='show_q'),
+    
     
     
     

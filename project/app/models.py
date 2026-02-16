@@ -4,11 +4,20 @@ from django.db import models
 
 class emp(models.Model):
     n=models.CharField(max_length=50)
-    a=models.IntegerField(max_length=10)
-    c=models.IntegerField(max_length=15)
-    e=models.EmailField(max_length=30)
+    a=models.IntegerField(null=True)
+    c=models.IntegerField(null=True)
+    e=models.EmailField(null=True)
     d=models.CharField(max_length=50)
     
 class dep(models.Model):
     d=models.CharField()
     h=models.CharField(max_length=50)
+    
+    
+class submit_que(models.Model):
+    n=models.CharField(max_length=50)
+    e=models.EmailField(null=True)
+    c=models.IntegerField()
+    d=models.CharField(max_length=50)
+    q=models.CharField(max_length=100)
+    
