@@ -105,8 +105,11 @@ def submit_q(req):
         c=req.POST.get('contact')
         d=req.POST.get('dep')
         q=req.POST.get('que')
-        data1=submit_que.objects.create(name=n,email=e,contact=c,dep=d,que=e)
+        data1=submit_que.objects.create(name=n,email=e,contact=c,dep=d,que=q)
+        return render(req,'userpanel.html',{'submit_q':True})
+        
     return render(req,'userpanel.html',{'submit_q':True})
+
 
 
 def show_q(req):

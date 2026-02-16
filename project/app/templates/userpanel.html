@@ -81,8 +81,144 @@
             box-shadow:0 4px 10px rgba(0,0,0,0.1);
         }
 
-            </style>
-        {% endblock %}
+
+/* ===== Card Design ===== */
+.form-card, .form-cardd{
+    background:#ffffff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    max-width:500px;
+    margin:auto;
+}
+
+.form-card h2,
+.form-cardd h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#0f172a;
+}
+
+/* ===== Page Background (light ya jo bhi hai usko mat chhedo) ===== */
+
+/* ===== Form Card ===== */
+.form-card{
+    background-color: #0b1f3a;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    color: white;
+    width: 1900px;              /* fixed width */
+    margin-right: 350px ;         /* horizontal centre */
+}
+
+/* ===== Heading ===== */
+.form-card h2{
+    color: white;
+    margin-bottom: 25px;
+    font-size:40px;
+    text-align: center; 
+      /* center nahi kiya (sidebar layout ke liye) */
+}
+
+/* ===== Labels ===== */
+.form-group label{
+    color: white;
+    font-weight: 400;
+    margin:10px;   
+    margin-top:20px;
+}
+
+/* ===== Inputs ===== */
+.form-group input{
+    width: 100%;
+    padding: 10px 12px;
+    margin:4px;
+    border-radius: 6px;
+    border: 1px solid #1e3a8a;
+    background-color: white;
+    color: black;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* ===== Input Focus ===== */
+.form-group input:focus{
+    border-color: #4da6ff;
+    box-shadow: 0 0 5px rgba(77,166,255,0.5);
+}
+
+/* ===== Button ===== */
+.btn-submit{
+    padding: 10px 150px;
+    margin:30px;
+    background-color: #1d4ed8;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-submit:hover{
+    background-color: #2563eb;
+}
+
+
+/* ===== Show Query Card (Same as Form) ===== */
+.form-cardd{
+    background-color:#0b1f3a;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+    color:white;
+    width:90%;
+    margin:30px auto;
+}
+
+/* ===== Heading ===== */
+.form-cardd h2{
+    text-align:center;
+    margin-bottom:25px;
+    font-size:30px;
+    color:white;
+}
+
+/* ===== Table Styling ===== */
+.tble{
+    width:100%;
+    
+    margin-top:10px;
+    color:white;
+    margin:10px
+}
+
+
+.tble thead{
+    background:#1e3a8a;
+}
+
+.tble th{
+    padding:12px;
+    font-weight:600;
+    text-align:center;
+    border-bottom:2px solid #4da6ff;
+}
+
+/* ===== Table Body ===== */
+.tble td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+/* ===== Hover Effect ===== */
+.tble tbody tr:hover{
+    background:#102a4d;
+    transition:0.3s;
+}
+    </style>
+    {% endblock %}
 
 {% block contect %}
 
@@ -141,56 +277,49 @@
     </ul>
 </div>
 
-<!-- ===== Main Area ===== -->
+
 <div class="main">
 
-    <div class="topnav">
-        <h3>Welcome {{ request.user.username }}</h3>
-        <span class="material-icons-outlined">account_circle</span>
-    </div>
 
-    {% block content %}
-    <div class="card">
-        <h2>Dashboard</h2>
-    </div>
-    {% endblock %}
+
+    
 
 </div>
 
 {% if submit_q %}
         
         <div class="form-card">
-            <h2>Query</h2>
+            <h2><u>Query</u></h2>
 
             <form method="POST">
                 {% csrf_token %}
 
                 <div class="form-group">
-                    <label>Name</label>
+                    <label>Name :-</label>
                     <input type="text" name="name" required>
                 </div>
 
                 
                 <div class="form-group">
-                    <label>Email</label>
+                    <label>Email :-</label>
                     <input type="email" name="email" required>
                 </div>
 
                   <div class="form-group">
-                    <label>Contact</label>
-                    <input type="contact" name="Contact" required>
+                    <label>Contact :-</label>
+                    <input type="number" name="contact" required>
                 </div>
                 
                 
                 
                 <div class="form-group">
-                    <label>Department</label>
+                    <label>Department :-</label>
                     <input type="text" name="dep" required>
                 </div>
 
 
                 <div class="form-group">
-                    <label>Query</label>
+                    <label>Query :-</label>
                     <input type="text" name="que" required>
                 </div>
 
@@ -209,7 +338,7 @@
                         <th>S.No</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Conatact</th>
+                        <th>Contact</th>
                         <th>Department</th>
                         <th>Query</th>
                     
@@ -220,11 +349,11 @@
                     {% for i in data1 %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ i.name }}</td>
-                        <td>{{ i.email }}</td>
-                        <td>{{ i.department }}</td>
-                        <td>{{ i.query }}</td>
-                        <td>{{ i.status }}</td>
+                        <td>{{ i.n }}</td>
+                        <td>{{ i.e }}</td>
+                        <td>{{i.c}}</td>
+                        <td>{{ i.d }}</td>
+                        <td>{{ i.q }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

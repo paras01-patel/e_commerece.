@@ -17,7 +17,7 @@ class dep(models.Model):
 class submit_que(models.Model):
     n=models.CharField(max_length=50)
     e=models.EmailField(null=True)
-    c=models.IntegerField()
+    c=models.CharField(max_length=50)
     d=models.CharField(max_length=50)
     q=models.CharField(max_length=100)
     
