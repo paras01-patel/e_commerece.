@@ -36,6 +36,8 @@ urlpatterns = [
     path('submit_q',views.submit_q,name='submit_q'),
     path('show_q',views.show_q,name='show_q'),
     path('search',views.search,name='search'),
+    path('search1',views.search1,name='search1'),
+    
     
     
     

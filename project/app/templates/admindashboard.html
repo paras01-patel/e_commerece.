@@ -211,6 +211,61 @@ h1{
     color: #333;
 }
 
+/* ===== Form Box ===== */
+.frm{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: #f8fafc;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ===== Inputs ===== */
+.in{
+    padding: 10px 14px;
+    border: 1px solid rgb(28, 27, 27);
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    width: 300px;        /* length control */
+    transition: 0.2s;
+    margin-left:33px;
+    
+}
+
+.in:focus{
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+}
+
+/* ===== Submit Button ===== */
+.frm input[type="submit"]{
+    padding: 10px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+    margin-left: 100px;    
+}
+
+.frm input[type="submit"]:hover{
+    background: #1e40af;
+}
+
+.bt{
+    background-color:blue;
+    border-radius:6px;
+    margin:10px;
+    color:white;
+    padding:10px 12px;
+    width:300px;
+}
+
 </style>
 {% endblock %}
 
@@ -374,6 +429,12 @@ h1{
 <div class="table-container">
     <table class="employee-table">
         <thead>
+            <form action="{% url 'search1' %}" method="POST" class="frm">
+                {% csrf_token %}
+                <input type="text" name="dept" placeholder="Depatment" class="in">
+                <input type="text" name="h_head" placeholder="Head Department" class="in">
+                <input type="submit"  class="bt">
+            </form>
             <tr>
                 <th>S.No</th>
                 <th>Department</th>

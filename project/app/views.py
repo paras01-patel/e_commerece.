@@ -86,17 +86,35 @@ def add_d(req):
     if req.method=="POST":
         d=req.POST.get('dept')
         h=req.POST.get('h_dept')
-        dep.objects.create(d=d,h=h)
-    return render(req,'admindashboard.html',{'add_d':True})
+        data=dep.objects.create(d=d,h=h)
+    return render(req,'admindashboard.html',{'add_d':True,'data':data})
 
 def department_list(req):
     data=dep.objects.all()
     return render(req,'admindashboard.html',{'department_list':True,'data':data})
 
 
+def search1(req):
+    if req.method=="POST":
+        d=req.POST.get('dept')
+        h=req.POST.get('h_dept')
+        data=dep.objects.filter(d__contains=d,h__contains=h)
+        return render(req,'admindashboard.html',{'department_list':True,'data':data})
 
 def userpanel(req):
     return render(req,'userpanel.html')
+
+def search(req):
+    if req.method=="POST":
+        n=req.POST.get('name')
+        e=req.POST.get('email')
+        c=req.POST.get('contact')
+        d=req.POST.get('dep')
+        q=req.POST.get('que')
+        data1=submit_que.objects.filter(n__contains=n,e__contains=e,c__contains=c,d__contains=d,q__contains=q)    
+        
+        return render(req,'userpanel.html',{'show_q':True,'data1':data1})
+    
 
 
 def submit_q(req):
@@ -117,14 +135,3 @@ def show_q(req):
     data1=submit_que.objects.all()
     return render (req,'userpanel.html',{'show_q':True,'data1':data1})
 
-def search(req):
-    if req.method=="POST":
-        n=req.POST.get('name')
-        e=req.POST.get('email')
-        c=req.POST.get('contact')
-        d=req.POST.get('dep')
-        q=req.POST.get('que')
-        data1=submit_que.objects.filter(n__contains=n,e__contains=e,c__contains=c,d__contains=d,q__contains=q)    
-        print(data1)
-        return render(req,'userpanel.html',{'show_q':True,'data1':data1})
-    
