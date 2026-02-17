@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from app.models import emp,dep,submit_que
+from django.db.models import Q
 
 
 
@@ -115,3 +116,15 @@ def submit_q(req):
 def show_q(req):
     data1=submit_que.objects.all()
     return render (req,'userpanel.html',{'show_q':True,'data1':data1})
+
+def search(req):
+    if req.method=="POST":
+        n=req.POST.get('name')
+        e=req.POST.get('email')
+        c=req.POST.get('contact')
+        d=req.POST.get('dep')
+        q=req.POST.get('que')
+        data1=submit_que.objects.filter(n__contains=n,e__contains=e,c__contains=c,d__contains=d,q__contains=q)    
+        print(data1)
+        return render(req,'userpanel.html',{'show_q':True,'data1':data1})
+    

@@ -35,6 +35,7 @@ urlpatterns = [
     path('userpanel/',views.userpanel,name='userpanel'),
     path('submit_q',views.submit_q,name='submit_q'),
     path('show_q',views.show_q,name='show_q'),
+    path('search',views.search,name='search'),
     
     
     
