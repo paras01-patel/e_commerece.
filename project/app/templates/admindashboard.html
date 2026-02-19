@@ -95,7 +95,7 @@ form{
 /* Form Heading */
 h1{
     margin-bottom:20px;
-    text-align:center
+    
     font-size:22px;
     color:#1e293b;
     font-size:50px;
@@ -217,7 +217,7 @@ h1{
     align-items: center;
     gap: 12px;
     padding: 14px;
-    background: #f8fafc;
+    background: #ea5c0a;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
@@ -229,9 +229,10 @@ h1{
     border-radius: 6px;
     outline: none;
     font-size: 14px;
-    width: 300px;        /* length control */
+    width: 310px;        /* length control */
     transition: 0.2s;
-    margin-left:33px;
+    margin-left:3px;
+    
     
 }
 
@@ -243,7 +244,7 @@ h1{
 /* ===== Submit Button ===== */
 .frm input[type="submit"]{
     padding: 10px 20px;
-    background: #2563eb;
+    background: #b7620c;
     color: white;
     border: none;
     border-radius: 6px;
@@ -251,6 +252,8 @@ h1{
     cursor: pointer;
     transition: 0.25s;
     margin-left: 100px;    
+
+    
 }
 
 .frm input[type="submit"]:hover{
@@ -263,8 +266,79 @@ h1{
     margin:10px;
     color:white;
     padding:10px 12px;
-    width:300px;
+    width:400px;
+    margin-left: 45px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.frmm{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: #ea5c0a;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* ===== Inputs ===== */
+.inn{
+    padding: 10px 14px;
+    border: 1px solid rgb(28, 27, 27);
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    width: 128px;        /* length control */
+    transition: 0.2s;
+    margin-left:17px;
+    
+    
+}
+
+.inn:focus{
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+}
+
+/* ===== Submit Button ===== */
+.frmm input[type="submit"]{
+    padding: 10px 20px;
+    background: #b7620c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+    margin-left: 100px;    
+
+    
+}
+
+.frmm input[type="submit"]:hover{
+    background: #1e40af;
+}
+
+.btnn{
+    background-color:blue;
+    border-radius:6px;
+    margin:10px;
+    color:white;
+    padding:10px 12px;
+    width:400px;
+    margin-left: 5px;
+}
+
 
 </style>
 {% endblock %}
@@ -330,7 +404,7 @@ h1{
 
 
 {% if add_empolyee %}
-    <h1 class="he">Add Employee</h2>
+    <h1 class="he">Add Employee</h1>
         <form action="{% url 'add_e' %}" method='POST'>
             {% csrf_token %}
             
@@ -346,7 +420,7 @@ h1{
         
             <div class="group_l">
                 <label for="">Contact :-</label>
-                <input type="text" name="contect">
+                <input type="text" name="contact">
             </div>
             
             <div class="group_l">
@@ -368,12 +442,23 @@ h1{
                 <button class="btn-submit" type="submit">Add Employee</button>
         
         </form>
-    {% elif employee_list %}
-        <h1 class="he">Employee List </h2>
+{% elif employee_list %}
+        <h1 class="he">Employee List </h1>
 
 <div class="table-container">
+    
     <table class="employee-table">
+        <form action="{% url 'search2' %}" method="POST" class="frmm">
+                {% csrf_token %}
+                    <input type="text" name="name" placeholder="Name" class="inn">
+                    <input type="text" name="age" placeholder="Age" class="inn">
+                    <input type="text" name="contact" placeholder="Conatact" class="inn">
+                    <input type="text" name="email" placeholder="Email" class="inn">
+                    <input type="text" name="department" placeholder="Department" class="inn">
+                    <input type="submit"  class="btnn">
+            </form>
         <thead>
+
             <tr>
                 <th>S.No</th>
                 <th>Name</th>
@@ -385,14 +470,15 @@ h1{
         </thead>
 
         <tbody>
-            {% for i in emp %}
+            {% for i in data %}
             <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ i.name }}</td>
-                <td>{{ i.age }}</td>
-                <td>{{ i.contact }}</td>
-                <td>{{ i.email }}</td>
-                <td>{{ i.department }}</td>
+                <td>{{i.id}}</td>
+                <td>{{i.n}}</td>
+                <td>{{i.a}}</td>
+                <td>{{i.c}}</td>
+                <td>{{i.e}}</td>
+                <td>{{i.d}}</td>
+
             </tr>
             {% endfor %}
         </tbody>
@@ -402,6 +488,7 @@ h1{
 
 
 {% elif add_department %}
+
 <form action="{% url 'add_d' %}" method="POST" >
     {% csrf_token %}
         <div class="group_l">
@@ -423,11 +510,13 @@ h1{
         <button type="submit" class="btn-submit">Add Department</button>
 </form>
 
-   {% elif department_list %}
-        <h1 class="he">Employee List </h2>
+{% elif department_list %}
+        <h1 class="he">Department List </h2>
 
 <div class="table-container">
+    
     <table class="employee-table">
+        
         <thead>
             <form action="{% url 'search1' %}" method="POST" class="frm">
                 {% csrf_token %}
@@ -435,6 +524,7 @@ h1{
                 <input type="text" name="h_head" placeholder="Head Department" class="in">
                 <input type="submit"  class="bt">
             </form>
+        
             <tr>
                 <th>S.No</th>
                 <th>Department</th>
@@ -444,7 +534,7 @@ h1{
         </thead>
 
         <tbody>
-            {% for i in data %}
+            {% for i in data2 %}
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ i.d }}</td>

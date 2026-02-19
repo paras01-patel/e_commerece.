@@ -35,6 +35,12 @@ def logout(req):
     return render(req,'login.html')
 
 
+
+
+
+
+# admindashboard ---------------
+
 def admindashboard(req):
     return render(req,"admindashboard.html")
 
@@ -50,33 +56,29 @@ def add_e(req):
         contact = req.POST.get('contact')
         email = req.POST.get('email')
         department = req.POST.get('department')
-        if not name or not age or not contact or not email or not department:
-            return render(req, 'admindashboard.html', {
-                'add_employee': True,
-                'error': "All fields are required"
+        data=emp.objects.create(n=name,a=age,c=contact,e=email,d=department)
+    return render(req, 'admindashboard.html', {
+                'add_empolyee': True,
+                'data':data
             })
 
-        user = emp.objects.filter(email=email)
-
-        if user.exists():
-            return render(req, 'admindashboard.html', {'add_employee': True})
-
-        data=emp.objects.create(
-            name=name,
-            age=age,
-            contact=contact, 
-            email=email,
-            department=department
-        )
-        
-        return render(req, 'admindashboard.html', {'add_employee': True,user:'data'})
-    else:
-        return render(req, 'admindashboard.html', {'add_employee': True})
+def search2(req):
+    if req.method=="POST":
+        name = req.POST.get('name')
+        age = req.POST.get('age')
+        contact = req.POST.get('contact')
+        email = req.POST.get('email')
+        department = req.POST.get('department')
+        data=emp.objects.filter(n__contains=name,a__contains=age,c__contains=contact,e__contains=email,d__contains=department)
+        return render(req,'admindashboard.html',{'employee_list':True,'data':data})
+    return render(req, 'admindashboard.html',{'employee_list': True})
+    
 
 
 def employee_list(req):
-    user =emp.objects.all()
-    return render(req,'admindashboard.html',{'employee_list':True,'data':user})
+    data=emp.objects.all()
+    return render(req,'admindashboard.html',{'employee_list':True,'data':data})
+
 
 
 def add_department(req):
@@ -86,20 +88,27 @@ def add_d(req):
     if req.method=="POST":
         d=req.POST.get('dept')
         h=req.POST.get('h_dept')
-        data=dep.objects.create(d=d,h=h)
-    return render(req,'admindashboard.html',{'add_d':True,'data':data})
-
-def department_list(req):
-    data=dep.objects.all()
-    return render(req,'admindashboard.html',{'department_list':True,'data':data})
-
+        data2=dep.objects.create(d=d,h=h)
+    return render(req,'admindashboard.html',{'add_d':True,'data2':data2})
 
 def search1(req):
     if req.method=="POST":
-        d=req.POST.get('dept')
-        h=req.POST.get('h_dept')
-        data=dep.objects.filter(d__contains=d,h__contains=h)
-        return render(req,'admindashboard.html',{'department_list':True,'data':data})
+        de=req.POST.get('dept')
+        h=req.POST.get('h_head')
+        data2=dep.objects.filter(d__contains=de,h__contains=h)
+        return render(req,'admindashboard.html',{'department_list':True,'data2':data2})
+
+def department_list(req):
+    data2=dep.objects.all()
+    return render(req,'admindashboard.html',{'department_list':True,'data2':data2})
+
+
+
+
+
+
+# userpanel------------------
+
 
 def userpanel(req):
     return render(req,'userpanel.html')

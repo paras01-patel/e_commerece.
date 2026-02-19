@@ -10,7 +10,7 @@ class emp(models.Model):
     d=models.CharField(max_length=50)
     
 class dep(models.Model):
-    d=models.CharField()
+    d=models.CharField(max_length=50)
     h=models.CharField(max_length=50)
     
     
