@@ -21,7 +21,13 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.landing,name='landing'),
+    
+    path('',views.home,name='home'),
+    path('about/',views.about,name='about'),
+    path('services/',views.services,name='services'),
+    path('contact/',views.contact,name='contact'),
+    
+    
     path('signup/',views.signup,name='signup'),
     path('login/',views.login,name='login'),
     path('logout',views.logout,name='logout'),
@@ -38,6 +44,14 @@ urlpatterns = [
     path('search',views.search,name='search'),
     path('search1',views.search1,name='search1'),
     path('search2',views.search2,name='search2'),
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

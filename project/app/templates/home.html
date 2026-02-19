@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(to right, #4e73df, #1cc88a);
+    color: white;
+}
+
+.hero h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background: white;
+    color: #4e73df;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 20px;
+    background: #f8f9fc;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    width: 260px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+</style>
+
+<div class="hero">
+    <h1>Welcome to My Django Website</h1>
+    <p>Modern Home Page with HTML & CSS in Same File</p>
+    <a href="#" class="btn">Get Started</a>
+</div>
+
+<div class="features">
+    <div class="card">
+        <h3>Fast</h3>
+        <p>Django Powered Backend</p>
+    </div>
+    <div class="card">
+        <h3>Secure</h3>
+        <p>CSRF & Authentication Ready</p>
+    </div>
+    <div class="card">
+        <h3>Responsive</h3>
+        <p>Clean & Professional Design</p>
+    </div>
+</div>
+
+{% endblock %}

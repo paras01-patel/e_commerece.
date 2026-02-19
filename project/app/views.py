@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from app.models import emp,dep,submit_que
+from app.models import emp,dep,submit_que,con
 from django.db.models import Q
 
 
@@ -8,9 +8,24 @@ from django.db.models import Q
 
 # Create your views here.
 
+def home(req):
+    return render(req,'home.html')
 
-def landing(req):
-    return render(req,'landing.html')
+def about(req):
+    return render(req,'about.html')
+
+
+def services(req):
+    return render(req,'services.html')
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        subject = request.POST.get("subject")
+        sav=con.objects.create(name=name,email=email,subject=subject)
+        return render(request, "contact.html",{'sav':sav})
+    return render(request, "contact.html")
 
 def signup(req):
     return render(req,'signup.html')
@@ -113,6 +128,20 @@ def department_list(req):
 def userpanel(req):
     return render(req,'userpanel.html')
 
+
+
+def submit_q(req):
+    if req.method=='POST':
+        n=req.POST.get('name')
+        e=req.POST.get('email')
+        c=req.POST.get('contact')
+        d=req.POST.get('dep')
+        q=req.POST.get('que')
+        data1=submit_que.objects.create(n=n,e=e,c=c,d=d,q=q)
+        return render(req,'userpanel.html',{'submit_q':True,'data1':data1})
+    return render(req,'userpanel.html',{'submit_q':True})
+    
+        
 def search(req):
     if req.method=="POST":
         n=req.POST.get('name')
@@ -124,18 +153,6 @@ def search(req):
         
         return render(req,'userpanel.html',{'show_q':True,'data1':data1})
     
-
-
-def submit_q(req):
-    if req.method=='POST':
-        n=req.POST.get('name')
-        e=req.POST.get('email')
-        c=req.POST.get('contact')
-        d=req.POST.get('dep')
-        q=req.POST.get('que')
-        data1=submit_que.objects.create(name=n,email=e,contact=c,dep=d,que=q)
-        return render(req,'userpanel.html',{'submit_q':True})
-        
     return render(req,'userpanel.html',{'submit_q':True})
 
 

@@ -21,3 +21,8 @@ class submit_que(models.Model):
     d=models.CharField(max_length=50)
     q=models.CharField(max_length=100)
     
+    
+class con(models.Model):
+    name=models.CharField(max_length=50)
+    email=models.EmailField(max_length=100)
+    subject=models.TextField(max_length=100)    

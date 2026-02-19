@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #36b9cc, #4e73df);
+    }
+
+    .services-container {
+        width: 85%;
+        margin: 60px auto;
+        background: white;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .services-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .services-header h1 {
+        font-size: 40px;
+        color: #4e73df;
+        margin-bottom: 10px;
+    }
+
+    .services-header p {
+        font-size: 18px;
+        color: #666;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+
+    .service-card {
+        background: #f8f9fc;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        background: #4e73df;
+        color: white;
+    }
+
+    .service-card h3 {
+        margin-bottom: 15px;
+        font-size: 22px;
+    }
+
+    .service-card p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .cta-section {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .cta-section button {
+        padding: 12px 25px;
+        background: #1cc88a;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        color: white;
+        transition: 0.3s;
+    }
+
+    .cta-section button:hover {
+        background: #17a673;
+    }
+
+</style>
+
+
+<div class="services-container">
+
+    <div class="services-header">
+        <h1>Our Services</h1>
+        <p>We provide high-quality digital solutions using modern technologies.</p>
+    </div>
+
+    <div class="services-grid">
+
+        <div class="service-card">
+            <h3>Web Development</h3>
+            <p>Custom web applications built with Django and modern frontend technologies for fast and secure performance.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>API Development</h3>
+            <p>Powerful REST APIs using Django REST Framework for scalable mobile and web integrations.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Database Design</h3>
+            <p>Optimized database structure for better performance and efficient data management.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Admin Dashboard</h3>
+            <p>Interactive admin panels with authentication, analytics, and full control features.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>Security Implementation</h3>
+            <p>Secure systems with authentication, authorization, CSRF protection, and encryption.</p>
+        </div>
+
+        <div class="service-card">
+            <h3>UI/UX Design</h3>
+            <p>Modern, responsive, and user-friendly designs for better user engagement.</p>
+        </div>
+
+    </div>
+
+    <div class="cta-section">
+        <h2 style="margin-bottom:20px;">Want to work with us?</h2>
+        <button>Contact Us</button>
+    </div>
+
+</div>
+
+{% endblock %}

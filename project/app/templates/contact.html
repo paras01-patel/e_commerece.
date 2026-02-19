@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #1cc88a, #4e73df);
+    }
+
+    .contact-container {
+        width: 85%;
+        margin: 60px auto;
+        background: white;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .contact-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .contact-header h1 {
+        font-size: 38px;
+        color: #4e73df;
+        margin-bottom: 10px;
+    }
+
+    .contact-header p {
+        color: #666;
+        font-size: 16px;
+    }
+
+    .contact-wrapper {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+    }
+
+    .contact-info {
+        flex: 1;
+        min-width: 280px;
+    }
+
+    .contact-info h3 {
+        color: #1cc88a;
+        margin-bottom: 15px;
+    }
+
+    .contact-info p {
+        margin-bottom: 12px;
+        color: #444;
+    }
+
+    .contact-form {
+        flex: 1;
+        min-width: 280px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        border-color: #4e73df;
+        box-shadow: 0 0 5px rgba(78,115,223,0.3);
+    }
+
+    .contact-form button {
+        width: 100%;
+        padding: 12px;
+        background: #4e73df;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+        background: #2e59d9;
+    }
+
+    .contact-footer {
+        text-align: center;
+        margin-top: 40px;
+        color: #777;
+        font-size: 14px;
+    }
+
+    @media(max-width:768px){
+        .contact-wrapper{
+            flex-direction: column;
+        }
+    }
+
+</style>
+
+
+<div class="contact-container">
+
+    <div class="contact-header">
+        <h1>Contact Us</h1>
+        <p>Have any questions? We'd love to hear from you.</p>
+    </div>
+
+    <div class="contact-wrapper">
+
+        <div class="contact-info">
+            <h3>Get in Touch</h3>
+            <p><strong>Email:</strong> paraschandrawanshi649@gmail.com</p>
+            <p><strong>Phone:</strong> +91 6263442343</p>
+            <p><strong>Address:</strong> India</p>
+            <p>
+                We are available Monday to Saturday. Feel free to reach out 
+                for any queries related to our services or collaboration.
+            </p>
+        </div>
+
+        <div class="contact-form">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="subject" placeholder="Subject" required>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="contact-footer">
+        © 2026 My Django Project | All Rights Reserved
+    </div>
+
+</div>
+
+{% endblock %}
