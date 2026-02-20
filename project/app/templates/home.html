@@ -59,6 +59,64 @@ body {
 .card:hover {
     transform: translateY(-10px);
 }
+
+
+/* Extra Section */
+.extra-section {
+    padding: 80px 20px;
+    background: #ffffff;
+    text-align: center;
+}
+
+.extra-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.extra-section p {
+    max-width: 850px;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #555;
+}
+
+/* Highlight Boxes */
+.highlight-section {
+    background: #f8f9fc;
+    padding: 70px 20px;
+}
+
+.highlight-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.highlight-box {
+    width: 280px;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.highlight-box:hover {
+    transform: translateY(-8px);
+}
+
+.highlight-box h3 {
+    font-size: 22px;
+    color: #4e73df;
+    margin-bottom: 10px;
+}
+
+.highlight-box p {
+    color: #666;
+}
 </style>
 
 <div class="hero">
@@ -79,6 +137,35 @@ body {
     <div class="card">
         <h3>Responsive</h3>
         <p>Clean & Professional Design</p>
+    </div>
+</div>
+
+<!-- Extra Content Section -->
+<div style="padding:60px 20px; background:#ffffff; text-align:center;">
+    <h2 style="font-size:32px; margin-bottom:20px;">Why Choose Us?</h2>
+    <p style="max-width:800px; margin:auto; font-size:18px; line-height:1.6; color:#555;">
+        We build powerful and scalable Django applications with clean design 
+        and secure backend systems. Our focus is performance, security, 
+        and user-friendly experience. Whether you are building a portfolio, 
+        admin dashboard, or e-commerce site — we provide complete solutions.
+    </p>
+</div>
+
+<!-- Simple Highlight Section -->
+<div style="background:#f8f9fc; padding:50px 20px;">
+    <div style="display:flex; justify-content:center; gap:40px; flex-wrap:wrap; text-align:center;">
+        <div>
+            <h3 style="font-size:28px; color:#4e73df;">✔ Easy to Customize</h3>
+            <p style="color:#555;">Modify layout and content easily.</p>
+        </div>
+        <div>
+            <h3 style="font-size:28px; color:#4e73df;">✔ Clean Code</h3>
+            <p style="color:#555;">Structured and maintainable design.</p>
+        </div>
+        <div>
+            <h3 style="font-size:28px; color:#4e73df;">✔ Future Ready</h3>
+            <p style="color:#555;">Scalable architecture for growth.</p>
+        </div>
     </div>
 </div>
 
