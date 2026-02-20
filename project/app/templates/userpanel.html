@@ -283,7 +283,7 @@
     </style>
     {% endblock %}
 
-{% block contect %}
+{% block content %}
 
 <!-- ===== Sidebar ===== -->
 <div class="sidebar">
@@ -340,16 +340,6 @@
     </ul>
 </div>
 
-
-
-
-<div class="main">
-
-
-
-    
-
-</div>
 
 {% if submit_q %}
         
@@ -421,6 +411,10 @@
                         <th>Contact</th>
                         <th>Department</th>
                         <th>Query</th>
+                        <th>Edit/Delete</th>
+                        
+
+        
                         
 
                     </tr>
@@ -435,12 +429,47 @@
                         <td>{{i.c}}</td>
                         <td>{{ i.d }}</td>
                         <td>{{ i.q }}</td>
+                        <td><a href="{% url 'edit' pk=i.id %}">edit</a> /
+                            <a href="{% url 'delete' pk=i.id %}">delete</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
 
-        
+
+    {% elif edit %}
+        <div class="form-card">
+            <h2>Pending Query</h2>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" value="{{ data.n }}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" value="{{ data.e }}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Department</label>
+                    <input type="text" value="{{ data.d }}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Query</label>
+                    <input type="text" name="q" value="{{ data.q }}" >
+                </div>
+                <button type="submit" class="btn-submit">Submit</button>
+                
+            </form>
+        </div>
+
+
 {% endif %}
-{% endblock contect %}
+{% endblock content %}

@@ -154,10 +154,21 @@ def search(req):
         return render(req,'userpanel.html',{'show_q':True,'data1':data1})
     
     return render(req,'userpanel.html',{'submit_q':True})
-
-
+    
 
 def show_q(req):
     data1=submit_que.objects.all()
     return render (req,'userpanel.html',{'show_q':True,'data1':data1})
 
+def edit(req,pk):
+    data1=submit_que.objects.all()
+    return render(req,'userpanel.html',{'show_q':True,'data1':data1})
+
+def delete(req, pk):
+    obj = submit_que.objects.get(id=pk)
+    obj.delete()
+    data1 = submit_que.objects.all()
+    return render(req, 'userpanel.html', {
+        'show_q': True,
+        'data1': data1
+    })

@@ -44,6 +44,10 @@ urlpatterns = [
     path('search',views.search,name='search'),
     path('search1',views.search1,name='search1'),
     path('search2',views.search2,name='search2'),
+    path('edit/<int:pk>',views.delete,name='edit'),
+    path('delete/<int:pk>',views.delete,name='delete'),
+
+    
     
     
     
