@@ -160,15 +160,24 @@ def show_q(req):
     data1=submit_que.objects.all()
     return render (req,'userpanel.html',{'show_q':True,'data1':data1})
 
+
 def edit(req,pk):
-    data1=submit_que.objects.all()
-    return render(req,'userpanel.html',{'show_q':True,'data1':data1})
+    data1=submit_que.objects.filter(id=pk)
+    ed=submit_que.objects.get(id=pk)
+    
+    return render(req,'userpanel',{'show':ed})
+
 
 def delete(req, pk):
     obj = submit_que.objects.get(id=pk)
     obj.delete()
-    data1 = submit_que.objects.all()
+    data1 = submit_que.objects.all( )
     return render(req, 'userpanel.html', {
         'show_q': True,
         'data1': data1
     })
+
+
+def e(req):
+    data1=submit_que.objects.all()
+    return render(req,'userpanel')
