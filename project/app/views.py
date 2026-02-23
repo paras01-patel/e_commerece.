@@ -27,8 +27,6 @@ def contact(request):
         return render(request, "contact.html",{'sav':sav})
     return render(request, "contact.html")
 
-def signup(req):
-    return render(req,'signup.html')
 
 
 def login(req):
