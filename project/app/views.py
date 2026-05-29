@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from app.models import emp,dep,submit_que,con
 from django.db.models import Q
-
+from django.views.decorators.cache import never_cache
 
 
 
@@ -28,7 +28,7 @@ def contact(request):
     return render(request, "contact.html")
 
 
-
+@never_cache
 def login(req):
     if req.method == 'POST':
         e = req.POST.get('email')
@@ -43,6 +43,9 @@ def login(req):
             return render(req, 'userpanel.html', {'error': 'Invalid Email or Password'})
     return render(req, 'login.html')
 
+
+
+@never_cache
 def logout(req):
     
     return render(req,'login.html')
@@ -53,7 +56,7 @@ def logout(req):
 
 
 # admindashboard ---------------
-
+@never_cache
 def admindashboard(req):
     return render(req,"admindashboard.html")
 
@@ -122,7 +125,7 @@ def department_list(req):
 
 # userpanel------------------
 
-
+@never_cache
 def userpanel(req):
     return render(req,'userpanel.html')
 
