@@ -2,289 +2,547 @@
 {% block content %}
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #36b9cc, #4e73df);
-    }
 
-    .services-container {
-        width: 85%;
-        margin: 60px auto;
-        background: white;
-        padding: 50px;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    .services-header {
-        text-align: center;
-        margin-bottom: 50px;
-    }
-
-    .services-header h1 {
-        font-size: 40px;
-        color: #4e73df;
-        margin-bottom: 10px;
-    }
-
-    .services-header p {
-        font-size: 18px;
-        color: #666;
-    }
-
-    .services-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-    }
-
-    .service-card {
-        background: #f8f9fc;
-        padding: 30px;
-        border-radius: 12px;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .service-card:hover {
-        transform: translateY(-10px);
-        background: #4e73df;
-        color: white;
-    }
-
-    .service-card h3 {
-        margin-bottom: 15px;
-        font-size: 22px;
-    }
-
-    .service-card p {
-        font-size: 15px;
-        line-height: 1.6;
-    }
-
-    .cta-section {
-        text-align: center;
-        margin-top: 50px;
-    }
-
-    .cta-section button {
-        padding: 12px 25px;
-        background: #1cc88a;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        color: white;
-        transition: 0.3s;
-    }
-
-    .cta-section button:hover {
-        background: #17a673;
-    }
-
-
-
-
-
-
-
-/* ===== Common Section Style ===== */
-.extra-section {
-    margin-top: 80px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.section-title {
-    text-align: center;
-    font-size: 32px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 50px;
-    position: relative;
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(135deg,#36b9cc,#4e73df);
 }
 
-.section-title::after {
-    content: '';
-    width: 70px;
-    height: 4px;
-    background: #1cc88a;
-    display: block;
-    margin: 12px auto 0;
-    border-radius: 5px;
+/* ================= MAIN CONTAINER ================= */
+
+.services-container{
+    width:90%;
+    margin:50px auto;
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
-/* ===== Grid Layout ===== */
-.extra-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
+/* ================= HEADER ================= */
+
+.services-header{
+    text-align:center;
+    margin-bottom:60px;
 }
 
-/* ===== Card Design ===== */
-.extra-card {
-    background: #f8f9fc;
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    transition: 0.4s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.services-header h1{
+    font-size:48px;
+    color:#4e73df;
+    margin-bottom:15px;
+    font-weight:700;
 }
 
-.extra-card:hover {
-    transform: translateY(-10px);
-    background: #4e73df;
-    color: white;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+.services-header p{
+    font-size:18px;
+    color:#666;
+    width:70%;
+    margin:auto;
+    line-height:1.7;
 }
 
-.extra-card h3 {
-    margin-bottom: 15px;
-    font-size: 20px;
+/* ================= SERVICE GRID ================= */
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
 }
 
-.extra-card h2 {
-    margin: 15px 0;
-    color: #1cc88a;
+.service-card{
+    background:#f8f9fc;
+    padding:35px 25px;
+    border-radius:18px;
+    text-align:center;
+    transition:0.4s ease;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    position:relative;
+    overflow:hidden;
 }
 
-/* ===== Pricing Highlight ===== */
-.highlight-plan {
-    background: #4e73df;
-    color: white;
+.service-card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:5px;
+    background:#1cc88a;
+    transition:0.5s;
 }
 
-/* ===== Responsive ===== */
-@media(max-width:768px) {
-    .section-title {
-        font-size: 24px;
+.service-card:hover::before{
+    left:0;
+}
+
+.service-card:hover{
+    transform:translateY(-12px);
+    background:#4e73df;
+    color:white;
+    box-shadow:0 15px 30px rgba(0,0,0,0.25);
+}
+
+.service-icon{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.service-card h3{
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.service-card p{
+    line-height:1.7;
+    font-size:15px;
+}
+
+/* ================= CTA ================= */
+
+.cta-section{
+    margin-top:70px;
+    text-align:center;
+    background:linear-gradient(135deg,#4e73df,#224abe);
+    padding:50px;
+    border-radius:20px;
+    color:white;
+}
+
+.cta-section h2{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+.cta-section p{
+    margin-bottom:25px;
+    font-size:16px;
+    line-height:1.7;
+}
+
+.cta-btn{
+    padding:14px 35px;
+    border:none;
+    border-radius:10px;
+    background:#1cc88a;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:600;
+}
+
+.cta-btn:hover{
+    background:#17a673;
+    transform:scale(1.05);
+}
+
+/* ================= COMMON SECTION ================= */
+
+.extra-section{
+    margin-top:90px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:38px;
+    color:white;
+    margin-bottom:60px;
+    font-weight:700;
+    position:relative;
+}
+
+.section-title::after{
+    content:'';
+    width:80px;
+    height:4px;
+    background:#1cc88a;
+    display:block;
+    margin:15px auto 0;
+    border-radius:5px;
+}
+
+/* ================= EXTRA GRID ================= */
+
+.extra-grid{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+/* ================= EXTRA CARD ================= */
+
+.extra-card{
+    background:white;
+    padding:35px 25px;
+    border-radius:18px;
+    text-align:center;
+    transition:0.4s ease;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.extra-card:hover{
+    transform:translateY(-10px);
+    background:#4e73df;
+    color:white;
+    box-shadow:0 15px 30px rgba(0,0,0,0.25);
+}
+
+.extra-card h3{
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.extra-card h2{
+    margin:15px 0;
+    color:#1cc88a;
+    font-size:32px;
+}
+
+.extra-card p{
+    line-height:1.8;
+    font-size:15px;
+}
+
+/* ================= HIGHLIGHT ================= */
+
+.highlight-plan{
+    background:#4e73df;
+    color:white;
+    transform:scale(1.03);
+}
+
+.highlight-plan h2{
+    color:#1cc88a;
+}
+
+/* ================= STATS SECTION ================= */
+
+.stats-section{
+    width:90%;
+    margin:90px auto 0;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.stats-card{
+    background:white;
+    padding:40px 20px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.4s;
+}
+
+.stats-card:hover{
+    transform:translateY(-10px);
+}
+
+.stats-card h1{
+    font-size:45px;
+    color:#4e73df;
+    margin-bottom:10px;
+}
+
+.stats-card p{
+    font-size:18px;
+    color:#555;
+}
+
+/* ================= TESTIMONIAL ================= */
+
+.testimonial-section{
+    width:90%;
+    margin:100px auto;
+}
+
+.testimonial-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.testimonial-card{
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.4s;
+}
+
+.testimonial-card:hover{
+    transform:translateY(-10px);
+}
+
+.testimonial-card p{
+    line-height:1.8;
+    color:#555;
+    margin-bottom:20px;
+}
+
+.client-name{
+    font-size:18px;
+    font-weight:700;
+    color:#4e73df;
+}
+
+/* ================= FOOTER ================= */
+
+.footer-section{
+    margin-top:100px;
+    background:#111827;
+    color:white;
+    padding:60px 10%;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:40px;
+}
+
+.footer-box h3{
+    margin-bottom:20px;
+    font-size:24px;
+}
+
+.footer-box p{
+    line-height:1.8;
+    color:#d1d5db;
+}
+
+.footer-box ul{
+    list-style:none;
+}
+
+.footer-box ul li{
+    margin-bottom:12px;
+    color:#d1d5db;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:40px;
+    border-top:1px solid #374151;
+    padding-top:20px;
+    color:#9ca3af;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+    .services-container{
+        width:95%;
+        padding:25px;
     }
-    .extra-card {
-        padding: 20px;
+
+    .services-header h1{
+        font-size:34px;
     }
+
+    .services-header p{
+        width:100%;
+    }
+
+    .section-title{
+        font-size:28px;
+    }
+
+    .cta-section{
+        padding:30px 20px;
+    }
+
+    .cta-section h2{
+        font-size:28px;
+    }
+
 }
 
-
-
-    
 </style>
 
+<!-- ================= MAIN SERVICES ================= -->
 
 <div class="services-container">
 
     <div class="services-header">
         <h1>Our Services</h1>
-        <p>We provide high-quality digital solutions using modern technologies.</p>
+        <p>
+            We provide powerful digital solutions using modern technologies,
+            scalable architecture, responsive UI designs and secure backend systems.
+        </p>
     </div>
 
     <div class="services-grid">
 
         <div class="service-card">
+            <div class="service-icon">💻</div>
             <h3>Web Development</h3>
-            <p>Custom web applications built with Django and modern frontend technologies for fast and secure performance.</p>
+            <p>Custom web applications built using Django and modern frontend technologies.</p>
         </div>
 
         <div class="service-card">
+            <div class="service-icon">⚡</div>
             <h3>API Development</h3>
-            <p>Powerful REST APIs using Django REST Framework for scalable mobile and web integrations.</p>
+            <p>Secure and scalable REST APIs for mobile apps and web integrations.</p>
         </div>
 
         <div class="service-card">
+            <div class="service-icon">🗄️</div>
             <h3>Database Design</h3>
-            <p>Optimized database structure for better performance and efficient data management.</p>
+            <p>Optimized database structures for performance and better data handling.</p>
         </div>
 
         <div class="service-card">
+            <div class="service-icon">📊</div>
             <h3>Admin Dashboard</h3>
-            <p>Interactive admin panels with authentication, analytics, and full control features.</p>
+            <p>Modern dashboards with analytics, authentication and management tools.</p>
         </div>
 
         <div class="service-card">
-            <h3>Security Implementation</h3>
-            <p>Secure systems with authentication, authorization, CSRF protection, and encryption.</p>
+            <div class="service-icon">🔐</div>
+            <h3>Security System</h3>
+            <p>Authentication, authorization, CSRF protection and advanced security setup.</p>
         </div>
 
         <div class="service-card">
+            <div class="service-icon">🎨</div>
             <h3>UI/UX Design</h3>
-            <p>Modern, responsive, and user-friendly designs for better user engagement.</p>
+            <p>Beautiful responsive designs with modern layouts and smooth user experience.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">☁️</div>
+            <h3>Cloud Deployment</h3>
+            <p>Deploying projects on VPS, cloud hosting and production servers.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">📱</div>
+            <h3>Responsive Design</h3>
+            <p>Fully responsive websites that work perfectly on all screen sizes.</p>
         </div>
 
     </div>
 
     <div class="cta-section">
-        <h2 style="margin-bottom:20px;">Want to work with us?</h2>
-        <button>Contact Us</button>
+        <h2>Want To Build Your Dream Project?</h2>
+        <p>
+            Contact us today and get premium web solutions with modern design and secure systems.
+        </p>
+        <button class="cta-btn">Contact Us</button>
     </div>
 
 </div>
 
+<!-- ================= PROCESS SECTION ================= -->
 
-
-
-
-<!-- ===== Development Process ===== -->
 <div class="extra-section">
+
     <h2 class="section-title">Our Development Process</h2>
 
     <div class="extra-grid">
 
         <div class="extra-card">
             <h3>1️⃣ Requirement Analysis</h3>
-            <p>Understanding client needs and project goals clearly before starting.</p>
+            <p>Understanding client requirements and project objectives clearly.</p>
         </div>
 
         <div class="extra-card">
             <h3>2️⃣ Planning & Design</h3>
-            <p>Creating system architecture and database planning for scalability.</p>
+            <p>Creating architecture, database design and UI wireframes.</p>
         </div>
 
         <div class="extra-card">
             <h3>3️⃣ Development</h3>
-            <p>Clean coding using Django, APIs, authentication and best practices.</p>
+            <p>Clean coding using Django, APIs and scalable backend systems.</p>
         </div>
 
         <div class="extra-card">
             <h3>4️⃣ Testing & Launch</h3>
-            <p>Complete testing, bug fixing and smooth deployment on server.</p>
+            <p>Testing, bug fixing and smooth deployment on production server.</p>
         </div>
 
     </div>
+
 </div>
 
+<!-- ================= TECHNOLOGY ================= -->
 
-<!-- ===== Technology Stack ===== -->
 <div class="extra-section">
+
     <h2 class="section-title">Technologies We Use</h2>
 
     <div class="extra-grid">
 
         <div class="extra-card">
-            <h3>Django</h3>
-            <p>Secure and scalable backend framework.</p>
-        </div>
-
-        <div class="extra-card">
             <h3>Python</h3>
-            <p>Powerful programming for backend logic and automation.</p>
+            <p>Powerful backend programming and automation.</p>
         </div>
 
         <div class="extra-card">
-            <h3>Frontend</h3>
-            <p>HTML, CSS, JavaScript for responsive UI.</p>
+            <h3>Django</h3>
+            <p>Secure and scalable backend framework for web apps.</p>
         </div>
 
         <div class="extra-card">
-            <h3>Database</h3>
-            <p>MySQL / PostgreSQL optimized for performance.</p>
+            <h3>JavaScript</h3>
+            <p>Interactive frontend with dynamic user experience.</p>
+        </div>
+
+        <div class="extra-card">
+            <h3>MySQL</h3>
+            <p>Optimized relational database for performance.</p>
         </div>
 
     </div>
+
 </div>
 
+<!-- ================= WHY CHOOSE US ================= -->
 
-<!-- ===== Pricing Section ===== -->
 <div class="extra-section">
+
+    <h2 class="section-title">Why Choose Us</h2>
+
+    <div class="extra-grid">
+
+        <div class="extra-card">
+            <h3>🚀 Fast Performance</h3>
+            <p>Optimized coding standards for speed and smooth performance.</p>
+        </div>
+
+        <div class="extra-card">
+            <h3>🛡️ Secure System</h3>
+            <p>Advanced security implementation for safe applications.</p>
+        </div>
+
+        <div class="extra-card">
+            <h3>📞 24/7 Support</h3>
+            <p>Quick support and maintenance whenever needed.</p>
+        </div>
+
+        <div class="extra-card">
+            <h3>💎 Premium Design</h3>
+            <p>Professional UI/UX with modern responsive layouts.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= PRICING ================= -->
+
+<div class="extra-section">
+
     <h2 class="section-title">Service Packages</h2>
 
     <div class="extra-grid">
@@ -304,7 +562,7 @@
             <h2>₹15,000</h2>
             <p>
                 ✔ Dynamic Website <br>
-                ✔ Admin Panel <br>
+                ✔ Admin Dashboard <br>
                 ✔ Authentication <br>
                 ✔ Database Integration
             </p>
@@ -322,8 +580,126 @@
         </div>
 
     </div>
+
 </div>
 
-<!-- ================= EXTRA SECTIONS END ================= -->
+<!-- ================= STATS ================= -->
+
+<div class="stats-section">
+
+    <div class="stats-card">
+        <h1>50+</h1>
+        <p>Projects Completed</p>
+    </div>
+
+    <div class="stats-card">
+        <h1>30+</h1>
+        <p>Happy Clients</p>
+    </div>
+
+    <div class="stats-card">
+        <h1>5+</h1>
+        <p>Years Experience</p>
+    </div>
+
+    <div class="stats-card">
+        <h1>100%</h1>
+        <p>Client Satisfaction</p>
+    </div>
+
+</div>
+
+<!-- ================= TESTIMONIAL ================= -->
+
+<div class="testimonial-section">
+
+    <h2 class="section-title">Client Feedback</h2>
+
+    <div class="testimonial-grid">
+
+        <div class="testimonial-card">
+            <p>
+                “Amazing dashboard design and smooth backend performance.
+                Very professional development work.”
+            </p>
+
+            <div class="client-name">Rahul Sharma</div>
+        </div>
+
+        <div class="testimonial-card">
+            <p>
+                “Responsive design and secure authentication system.
+                Highly recommended for Django projects.”
+            </p>
+
+            <div class="client-name">Aman Verma</div>
+        </div>
+
+        <div class="testimonial-card">
+            <p>
+                “Great UI/UX and very clean coding structure.
+                The project delivery was fast and professional.”
+            </p>
+
+            <div class="client-name">Priya Patel</div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<div class="footer-section">
+
+    <div class="footer-grid">
+
+        <div class="footer-box">
+            <h3>About Us</h3>
+            <p>
+                We create modern, secure and scalable web applications
+                using Django and frontend technologies.
+            </p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Services</h3>
+
+            <ul>
+                <li>Web Development</li>
+                <li>API Development</li>
+                <li>Dashboard Design</li>
+                <li>UI/UX Design</li>
+            </ul>
+        </div>
+
+        <div class="footer-box">
+            <h3>Technologies</h3>
+
+            <ul>
+                <li>Python</li>
+                <li>Django</li>
+                <li>JavaScript</li>
+                <li>MySQL</li>
+            </ul>
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact</h3>
+
+            <ul>
+                <li>Email: info@example.com</li>
+                <li>Phone: +91 9876543210</li>
+                <li>Location: India</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 All Rights Reserved | Premium Django Services
+    </div>
+
+</div>
 
 {% endblock %}
