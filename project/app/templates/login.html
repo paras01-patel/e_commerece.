@@ -1,82 +1,178 @@
-
 {% load static %}
 
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-{% block css %}
-<style>
-    body{
-        margin:0;
-        font-family:Segoe UI, sans-serif;
-        background:#f9fafb;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-    }
 
-    .login-container{
-        width:500px;
-        height:500px
-        background:white;
-        padding:30px;
-        border-radius:10px;
-        box-shadow:0 4px 15px rgba(0,0,0,0.15);
-    }
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
 
-    h2{
-        text-align:center;
-        margin-bottom:20px;
-    }
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#4f46e5,#2563eb,#06b6d4);
+            padding:20px;
+        }
 
-    label{
-        font-weight:bold;
-        display:block;
-        margin-top:12px;
-    }
+        .login-container{
+            width:100%;
+            max-width:450px;
+            background:white;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.2);
+        }
 
-    input{
-        width:100%;
-        padding:10px;
-        margin-top:5px;
-        border:1px solid #ccc;
-        border-radius:5px;
-    }
+        .logo{
+            text-align:center;
+            margin-bottom:20px;
+        }
 
-    button{
-        width:100%;
-        padding:10px;
-        margin-top:20px;
-        background:#2563eb;
-        color:white;
-        border:none;
-        border-radius:6px;
-        font-size:16px;
-        cursor:pointer;
-    }
+        .logo img{
+            width:80px;
+            height:80px;
+            border-radius:50%;
+            object-fit:cover;
+        }
 
-    button:hover{
-        background:#1e40af;
-    }
-</style>
-{% endblock %}
+        h2{
+            text-align:center;
+            margin-bottom:10px;
+            color:#1f2937;
+        }
 
-            <div class="login-container">
-            
-            
-            <h2>Login</h2>
-            
-            <form method="POST">
-                {% csrf_token %}
-            
-                <label>Email</label>
-                <input type="email" name="email" required>
-            
+        .subtitle{
+            text-align:center;
+            color:#6b7280;
+            margin-bottom:25px;
+            font-size:14px;
+        }
+
+        .form-group{
+            margin-bottom:18px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:6px;
+            font-weight:600;
+            color:#374151;
+        }
+
+        input{
+            width:100%;
+            padding:12px 15px;
+            border:1px solid #d1d5db;
+            border-radius:10px;
+            outline:none;
+            transition:0.3s;
+            font-size:15px;
+        }
+
+        input:focus{
+            border-color:#2563eb;
+            box-shadow:0 0 10px rgba(37,99,235,0.2);
+        }
+
+        .forgot{
+            text-align:right;
+            margin-top:8px;
+        }
+
+        .forgot a{
+            text-decoration:none;
+            color:#2563eb;
+            font-size:14px;
+        }
+
+        .btn-login{
+            width:100%;
+            padding:13px;
+            margin-top:20px;
+            border:none;
+            border-radius:10px;
+            background:#2563eb;
+            color:white;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn-login:hover{
+            background:#1d4ed8;
+            transform:translateY(-2px);
+        }
+
+        .signup-link{
+            text-align:center;
+            margin-top:20px;
+            color:#6b7280;
+        }
+
+        .signup-link a{
+            color:#2563eb;
+            text-decoration:none;
+            font-weight:600;
+        }
+
+        @media(max-width:500px){
+            .login-container{
+                padding:25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+        </div>
+
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Login to your account</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" required>
-            
-                <button type="submit">Login</button>
-            
-            </form>
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
 
-            </div> 
+            <div class="forgot">
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn-login">
+                Login
+            </button>
+
+            <div class="signup-link">
+                Don't have an account?
+                <a href="{% url 'signup' %}">Sign Up</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
